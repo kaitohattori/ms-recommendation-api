@@ -1,0 +1,6 @@
+# python
+*.pyc
+
+# app
+/settings/settings.ini
+/logs
