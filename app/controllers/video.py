@@ -48,7 +48,8 @@ def get_recommended_videos():
       200:
         description: Recommended Videos
         schema:
-          $ref: '#/definitions/Video'
+          items:
+            $ref: '#/definitions/Video'
     """
     user_id = request.args.get('user_id')
     limit_str = request.args.get('limit')
