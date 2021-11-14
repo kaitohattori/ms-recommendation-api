@@ -1,4 +1,3 @@
-from flasgger import swag_from
 from flask import Blueprint
 from flask import jsonify
 from flask import request
@@ -7,6 +6,7 @@ from app.models.video import Video
 
 
 app = Blueprint('video', __name__)
+
 
 @app.route('/videos/recommended/', methods=['GET'])
 def get_recommended_videos():

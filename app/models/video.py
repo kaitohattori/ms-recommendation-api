@@ -26,19 +26,28 @@ class Video(Base):
         self.updated_at = updated_at
 
     @staticmethod
-    def find_all_recommended(user_id: str=None, limit: int=None):
+    def find_all_recommended(user_id: str = None, limit: int = None):
         session = database.connect_db()
-        query = session.query(Video, Rate).filter(Video.id == Rate.video_id).limit(1000).statement
+        query = session.query(Video, Rate).filter(Video.id == Rate.video_id)\
+            .limit(1000).statement
         df = pd.read_sql(query, session.bind)
-        df.columns = ['id', 'user_id', 'title', 'created_at', 'updated_at', 'rate_id', 'rate_user_id', 
-            'rate_video_id', 'rate_rate', 'rate_created_at', 'rate_updated_at']
+        df.columns = [
+            'id', 'user_id', 'title', 'created_at', 'updated_at',
+            'rate_id', 'rate_user_id', 'rate_video_id', 'rate_rate',
+            'rate_created_at', 'rate_updated_at'
+        ]
 
         recommender = Recommendation()
-        rows = recommender.predict(df=df, dataset_columns=['rate_user_id', 'rate_video_id', 'rate_rate'], 
-            item_id='rate_video_id', user_id=user_id, limit=limit, result_model=Video)
+        rows = recommender.predict(
+            df=df,
+            dataset_columns=['rate_user_id', 'rate_video_id', 'rate_rate'],
+            item_id='rate_video_id',
+            user_id=user_id, limit=limit, result_model=Video
+        )
         session.close()
 
-        if rows is None: return []
+        if rows is None:
+            return []
 
         return rows
 

@@ -9,14 +9,16 @@ class DataBase(object):
 
     def __init__(self):
         self.engine = create_engine(
-            f'{settings.db_driver}://{settings.db_user}:{settings.db_password}'\
-            f'@{settings.db_host}:{settings.db_port}/{settings.db_name}')
+            f'{settings.db_driver}://{settings.db_user}:'
+            f'{settings.db_password}@{settings.db_host}:'
+            f'{settings.db_port}/{settings.db_name}')
         self.connect_db()
 
     def connect_db(self):
         Base.metadata.create_all(self.engine)
         session = sessionmaker(bind=self.engine)
         return session()
+
 
 Base = declarative_base()
 database = DataBase()
