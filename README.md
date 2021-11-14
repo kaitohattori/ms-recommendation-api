@@ -9,6 +9,8 @@ $ pyenv version
 $ pip install -r requirements.txt
 ```
 
+`settings.ini` を settings/以下に配置してください。
+
 ## 動作
 
 ```
