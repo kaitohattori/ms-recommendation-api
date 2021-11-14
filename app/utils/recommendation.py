@@ -1,10 +1,9 @@
 import pandas as pd
-
-from surprise import NormalPredictor
 from surprise import Dataset
+from surprise import NormalPredictor
 from surprise import Reader
+from surprise import SVD
 from surprise.model_selection import cross_validate
-from surprise import Reader, Dataset, SVD
 
 
 class Recommendation(object):
