@@ -59,6 +59,6 @@ def get_recommended_videos():
 
     json_videos = []
     for video in videos:
-      json_videos.append(video.json)
+        json_videos.append(video.json)
 
     return jsonify(json_videos)

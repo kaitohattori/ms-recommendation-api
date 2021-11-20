@@ -26,7 +26,8 @@ class Video(Base):
         self.updated_at = updated_at
 
     @staticmethod
-    def find_all_recommended(user_id: str, limit: int = None, max_video: int = 1000):
+    def find_all_recommended(user_id: str, limit: int = None,
+                             max_video: int = 1000):
         session = database.connect_db()
         query = session.query(Video, Rate).filter(
             Video.id == Rate.video_id).limit(max_video).statement
