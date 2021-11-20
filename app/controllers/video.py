@@ -18,7 +18,7 @@ def get_recommended_videos():
       - name: user_id
         in: query
         type: string
-        required: false
+        required: true
       - name: limit
         in: query
         type: integer
@@ -54,5 +54,11 @@ def get_recommended_videos():
     user_id = request.args.get('user_id')
     limit_str = request.args.get('limit')
     limit = int(limit_str) if limit_str is not None else None
+
     videos = Video.find_all_recommended(user_id=user_id, limit=limit)
-    return jsonify(list(map(lambda x: x.json, videos)))
+
+    json_videos = []
+    for video in videos:
+      json_videos.append(video.json)
+
+    return jsonify(json_videos)

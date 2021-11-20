@@ -26,31 +26,31 @@ class Video(Base):
         self.updated_at = updated_at
 
     @staticmethod
-    def find_all_recommended(user_id: str = None, limit: int = None, max_video: int = 1000):
+    def find_all_recommended(user_id: str, limit: int = None, max_video: int = 1000):
         session = database.connect_db()
         query = session.query(Video, Rate).filter(
             Video.id == Rate.video_id).limit(max_video).statement
         df = pd.read_sql(query, session.bind)
         df.columns = [
             'id', 'user_id', 'title', 'created_at', 'updated_at',
-            'rate_id', 'rate_user_id', 'rate_video_id', 'rate_rate',
+            'rate_id', 'rate_user_id', 'rate_video_id', 'rate_value',
             'rate_created_at', 'rate_updated_at'
         ]
 
         recommender = Recommendation()
         predicted_dfs = recommender.predict(
             df=df,
-            dataset_columns=['rate_user_id', 'rate_video_id', 'rate_rate'],
-            item_id='rate_video_id',
-            user_id=user_id, limit=limit, result_model=Video
+            dataset_columns=['rate_user_id', 'rate_video_id', 'rate_value'],
+            item_id='rate_video_id', user_id=user_id
         )
         session.close()
 
         if predicted_dfs is None:
             return []
+        limited_defs = predicted_dfs.head(limit)
 
         recommended_videos = []
-        for _, predicted_df in predicted_dfs.iterrows():
+        for _, predicted_df in limited_defs.iterrows():
             recommended_videos.append(Video(
                 id=predicted_df['id'],
                 user_id=predicted_df['user_id'],
