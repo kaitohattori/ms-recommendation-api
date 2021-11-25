@@ -52,6 +52,8 @@ def get_recommended_videos():
             $ref: '#/definitions/Video'
     """
     user_id = request.args.get('user_id')
+    if user_id is None or user_id == "":
+        return jsonify({'message': 'user_id is required'}), 400
     limit_str = request.args.get('limit')
     limit = int(limit_str) if limit_str is not None else None
 
