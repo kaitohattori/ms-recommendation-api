@@ -5,7 +5,7 @@ CREATE TABLE videos (
     "id" BIGSERIAL NOT NULL,
     "user_id" VARCHAR(50),
     "title" VARCHAR(50),
-    "create_at" TIMESTAMP NOT NULL,
+    "created_at" TIMESTAMP NOT NULL,
     "updated_at" TIMESTAMP NOT NULL,
     PRIMARY KEY ("id")
 );
@@ -15,7 +15,7 @@ CREATE TABLE rates (
     "user_id" VARCHAR(50),
     "video_id" BIGINT,
     "value" DECIMAL,
-    "create_at" TIMESTAMP NOT NULL,
+    "created_at" TIMESTAMP NOT NULL,
     "updated_at" TIMESTAMP NOT NULL,
     PRIMARY KEY ("user_id", "video_id")
 );
@@ -24,7 +24,7 @@ CREATE TABLE analyses (
     "id" BIGSERIAL UNIQUE NOT NULL,
     "user_id" VARCHAR(50),
     "video_id" BIGINT,
-    "create_at" TIMESTAMP NOT NULL,
+    "created_at" TIMESTAMP NOT NULL,
     "updated_at" TIMESTAMP NOT NULL,
     PRIMARY KEY ("id")
 );

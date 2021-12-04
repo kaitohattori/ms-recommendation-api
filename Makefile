@@ -17,7 +17,7 @@ external-run:
 		-e POSTGRES_USER=root \
 		-e POSTGRES_PASSWORD=root \
 		-e POSTGRES_INITDB_ARGS="--encoding=UTF-8" \
-		-v $(PWD)/initdb/:/docker-entrypoint-initdb.d \
+		-v $(PWD)/db/:/docker-entrypoint-initdb.d \
 		--name $(POSTGRESQL) \
 		postgres:latest
 
