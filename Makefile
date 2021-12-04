@@ -10,7 +10,7 @@ docker-build: ## Build on docker
 docker-run: ## Run on docker
 	docker run --name $(NAME) --rm -p 8082:8082 $(NAME)
 
-external-run:
+external-run: ## Run external apps
 	docker run -d \
 		-p 5432:5432 \
 		-e POSTGRES_DB=video \
@@ -21,7 +21,7 @@ external-run:
 		--name $(POSTGRESQL) \
 		postgres:latest
 
-external-end:
+external-end: ## End external apps
 	docker stop $(POSTGRESQL)
 	docker rm $(POSTGRESQL)
 
