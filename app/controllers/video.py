@@ -1,16 +1,13 @@
-from flask import Blueprint
-from flask import jsonify
-from flask import request
+from flask import Blueprint, jsonify, request
 
 from app.models.video import Video
 
+app = Blueprint("video", __name__)
 
-app = Blueprint('video', __name__)
 
-
-@app.route('/videos/recommended/', methods=['GET'])
+@app.route("/videos/recommended/", methods=["GET"])
 def get_recommended_videos():
-    """ Find recommended videos
+    """Find recommended videos
     ---
     tags:
       - Videos
@@ -51,10 +48,10 @@ def get_recommended_videos():
           items:
             $ref: '#/definitions/Video'
     """
-    user_id = request.args.get('user_id')
+    user_id = request.args.get("user_id")
     if user_id is None or user_id == "":
-        return jsonify({'message': 'user_id is required'}), 400
-    limit_str = request.args.get('limit')
+        return jsonify({"message": "user_id is required"}), 400
+    limit_str = request.args.get("limit")
     limit = int(limit_str) if limit_str is not None else None
 
     videos = Video.find_all_recommended(user_id=user_id, limit=limit)

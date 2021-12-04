@@ -6,12 +6,12 @@ from settings import settings
 
 
 class DataBase(object):
-
     def __init__(self):
         self.engine = create_engine(
-            f'{settings.db_driver}://{settings.db_user}:'
-            f'{settings.db_password}@{settings.db_host}:'
-            f'{settings.db_port}/{settings.db_name}')
+            f"{settings.db_driver}://{settings.db_user}:"
+            f"{settings.db_password}@{settings.db_host}:"
+            f"{settings.db_port}/{settings.db_name}"
+        )
         self.connect_db()
 
     def connect_db(self):
