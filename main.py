@@ -1,12 +1,16 @@
+import logging
+
 from flasgger import Swagger
 from flask import Flask
 
 from app.controllers import video
+from settings import settings
 
 app = Flask(__name__)
 app.config["SWAGGER"] = {"title": "MS Recommendation API"}
-
 app.register_blueprint(video.app)
+
+logging.basicConfig(filename=f"logs/{settings.log_file}", level=logging.INFO)
 
 swagger_config = {
     "headers": [],

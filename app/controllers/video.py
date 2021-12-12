@@ -1,8 +1,11 @@
+import logging
+
 from flask import Blueprint, jsonify, request
 
 from app.models.video import Video
 
 app = Blueprint("video", __name__)
+logger = logging.getLogger(__name__)
 
 
 @app.route("/videos/recommended/", methods=["GET"])
