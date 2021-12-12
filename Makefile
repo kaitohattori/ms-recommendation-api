@@ -1,14 +1,14 @@
-NAME = ms-recommendation-api
+APP_NAME = ms-recommendation-api
 POSTGRESQL = postgresql
 
 run: ## Run on local
 	python main.py
 
 docker-build: ## Build on docker
-	docker build -t $(NAME) .
+	docker build -t $(APP_NAME) .
 
 docker-run: ## Run on docker
-	docker run --name $(NAME) --rm -p 8082:8082 $(NAME)
+	docker run --name $(APP_NAME) --rm -p 8082:8082 $(APP_NAME)
 
 external-run: ## Run external apps
 	docker run -d \
