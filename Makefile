@@ -3,6 +3,7 @@ EXTERNAL_APPS = postgresql
 
 init: ## Initialize app
 	pip install -r requirements.txt
+	mkdir -p ./logs
 
 run: ## Run on local
 	python main.py
