@@ -4,3 +4,7 @@
 # app
 /settings/settings.ini
 /logs
+
+# external apps
+/external-apps/logs
+/external-apps/assets

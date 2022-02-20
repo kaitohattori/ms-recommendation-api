@@ -6,17 +6,13 @@
 $ pyenv version   
 3.7.2 (set by /Users/kaito/.pyenv/version)
 
-$ pip install -r requirements.txt
+# APP初期設定
+$ make init
 ```
 
 `settings.ini` を settings/以下に配置してください。
 
 ## 動作
-
-```
-# 実行
-$ python main.py
-```
 
 ```
 # 実行
@@ -27,6 +23,15 @@ $ make docker-build
 
 # Docker実行
 $ make docker-run
+
+# external appsを立ち上げる
+$ make external-run
+
+# external appsを終了する
+$ make external-end
+
+# ヘルプ
+$ make help
 ```
 
 ## ドキュメント

@@ -1,6 +1,8 @@
 APP_NAME = ms-recommendation-api
-POSTGRESQL = postgresql
-DOCKER_STORAGE_PATH = ~/ms-tv
+EXTERNAL_APPS = postgresql
+
+init: ## Initialize app
+	pip install -r requirements.txt
 
 run: ## Run on local
 	python main.py
@@ -11,23 +13,19 @@ docker-build: ## Build on docker
 docker-run: ## Run on docker
 	docker run --rm \
 		-p 8082:8082 \
-		-v $(DOCKER_STORAGE_PATH)/logs:/app/logs \
+		-v ./logs:/app/logs \
 		--name $(APP_NAME) \
 		$(APP_NAME):latest
 
+external-init: ## Initialize external apps
+	rm -rf ./external-apps/assets
+	rm -rf ./external-apps/logs
+
 external-run: ## Run external apps
-	docker run -d --rm \
-		-p 5432:5432 \
-		-e POSTGRES_DB=video \
-		-e POSTGRES_USER=root \
-		-e POSTGRES_PASSWORD=root \
-		-e POSTGRES_INITDB_ARGS="--encoding=UTF-8" \
-		-v $(PWD)/db/:/docker-entrypoint-initdb.d \
-		--name $(POSTGRESQL) \
-		postgres:latest
+	docker-compose up -d $(EXTERNAL_APPS)
 
 external-end: ## End external apps
-	docker stop $(POSTGRESQL)
+	docker-compose down
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
