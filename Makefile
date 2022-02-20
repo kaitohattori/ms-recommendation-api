@@ -13,7 +13,7 @@ docker-build: ## Build on docker
 docker-run: ## Run on docker
 	docker run --rm \
 		-p 8082:8082 \
-		-v ./logs:/app/logs \
+		-v logs:/app/logs \
 		--name $(APP_NAME) \
 		$(APP_NAME):latest
 
