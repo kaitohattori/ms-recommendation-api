@@ -10,9 +10,9 @@ $ pyenv version
 $ make init
 ```
 
-`settings.ini` を settings/以下に配置してください。
+`settings/settings.ini` を配置してください。
 
-## 動作
+## 実行コマンド
 
 ```
 # 実行
