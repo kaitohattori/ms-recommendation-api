@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-recommendation-api-deployment
+  labels:
+    app: ms-recommendation-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-recommendation-api
+  template:
+    metadata:
+      labels:
+        app: ms-recommendation-api
+    spec:
+      containers:
+        - name: ms-recommendation-api
+          image: ms-recommendation-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+          volumeMounts:
+            - mountPath: /app/logs
+              name: logs
+      volumes:
+        - name: logs
+          persistentVolumeClaim:
+            claimName: logs-pv-claim
