@@ -53,6 +53,7 @@ $ eval $(minikube docker-env)
 $ docker build -t ms-recommendation-api .
 
 # Deploy
+$ kubectl apply -f deploy/configmap.yaml
 $ kubectl apply -f deploy/deployment.yaml
 $ kubectl apply -f deploy/service.yaml
 
