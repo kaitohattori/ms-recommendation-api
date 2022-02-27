@@ -1,40 +1,40 @@
 # MS Recommendation API
 
-## 準備
+## Prerequisites
 
 ```
 $ pyenv version   
 3.7.2 (set by /Users/kaito/.pyenv/version)
 
-# APP初期設定
+# Initialize app
 $ make init
 ```
 
-`settings/settings.ini` を配置してください。
+Set setting file at `settings/settings.ini`
 
-## 実行コマンド
+## How to develop
 
 ```
-# 実行
+# Run on local
 $ make run
 
-# Dockerビルド
+# Build on docker
 $ make docker-build
 
-# Docker実行
+# Run on docker
 $ make docker-run
 
-# external appsを立ち上げる
+# Run external apps
 $ make external-run
 
-# external appsを終了する
+# End external apps
 $ make external-end
 
-# ヘルプ
+# Help
 $ make help
 ```
 
-## ドキュメント
+## API Docs
 
 http://localhost:8082/docs/api/v1/
 
