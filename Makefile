@@ -12,7 +12,8 @@ docker-build: ## Build on docker
 	docker build -t $(APP_NAME) .
 
 docker-run: ## Run on docker
-	docker run --rm --network=host \
+	docker run --rm \
+		--add-host=localhost:host-gateway \
 		-p 8082:8082 \
 		-e APP_ENV=development \
 		-v logs:/app/logs \
