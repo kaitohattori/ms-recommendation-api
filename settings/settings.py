@@ -1,7 +1,12 @@
 import configparser
+import os
+
+conf_file_path = "settings/settings-production.ini"
+if os.getenv('APP_ENV') == "development":
+    conf_file_path = "settings/settings-development.ini"
 
 conf = configparser.ConfigParser()
-conf.read("settings/settings.ini")
+conf.read(conf_file_path)
 
 log_file = conf["api"]["log_file"]
 port = int(conf["api"]["port"])

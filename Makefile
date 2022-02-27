@@ -6,14 +6,15 @@ init: ## Initialize app
 	mkdir -p ./logs
 
 run: ## Run on local
-	python main.py
+	APP_ENV=development python main.py
 
 docker-build: ## Build on docker
 	docker build -t $(APP_NAME) .
 
 docker-run: ## Run on docker
-	docker run --rm \
+	docker run --rm --network=host \
 		-p 8082:8082 \
+		-e APP_ENV=development \
 		-v logs:/app/logs \
 		--name $(APP_NAME) \
 		$(APP_NAME):latest

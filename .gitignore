@@ -2,7 +2,7 @@
 *.pyc
 
 # app
-/settings/settings.ini
+/settings/settings*.ini
 /logs
 
 # external apps
