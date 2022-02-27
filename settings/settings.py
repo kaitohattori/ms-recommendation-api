@@ -1,9 +1,9 @@
 import configparser
 import os
 
-conf_file_path = "settings/settings-production.ini"
-if os.getenv('APP_ENV') == "development":
-    conf_file_path = "settings/settings-development.ini"
+conf_file_path = "settings/settings-development.ini"
+if os.getenv('APP_ENV') == "production":
+    conf_file_path = "settings/settings-production.ini"
 
 conf = configparser.ConfigParser()
 conf.read(conf_file_path)

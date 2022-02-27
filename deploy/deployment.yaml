@@ -27,6 +27,9 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082
+          env:
+            - name: APP_ENV
+              value: production
           volumeMounts:
             - mountPath: /app/logs
               name: logs
