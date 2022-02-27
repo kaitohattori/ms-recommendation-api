@@ -25,6 +25,8 @@ services:
         volumes:
             - ./external-apps/logs:/go/src/ms-api/logs
             - ./external-apps/assets:/go/src/ms-api/assets
+        environment:
+            - APP_ENV=development
         hostname: ms-api
         restart: always
         user: root
@@ -36,6 +38,8 @@ services:
         volumes:
             - ./external-apps/logs:/go/src/ms-stream-api/logs
             - ./external-apps/assets:/go/src/ms-stream-api/assets
+        environment:
+            - APP_ENV=development
         hostname: ms-stream-api
         restart: always
         user: root
@@ -46,6 +50,8 @@ services:
             - 8082:8082
         volumes:
             - ./logs:/app/logs
+        environment:
+            - APP_ENV=development
         depends_on:
             - postgresql
         hostname: ms-recommendation-api
@@ -56,6 +62,8 @@ services:
         container_name: ms-website
         ports:
             - 3000:3000
+        environment:
+            - NODE_ENV=development
         depends_on:
             - ms-api
             - ms-stream-api
