@@ -1,7 +1,6 @@
 FROM python:3.7-slim-buster
 
-RUN apt-get update && \
-    apt-get -y install gcc
+RUN apt-get update && apt-get -y install gcc libpq-dev g++
 
 RUN cd
 RUN mkdir /app
