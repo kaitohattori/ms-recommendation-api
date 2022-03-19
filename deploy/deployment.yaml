@@ -8,20 +8,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ms-recommendation-api-gateway
+      app: ms-recommendation-api
   template:
     metadata:
       labels:
-        app: ms-recommendation-api-gateway
+        app: ms-recommendation-api
     spec:
       containers:
-        - name: nginx
-          image: nginx:latest
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: /etc/nginx/conf.d
-              name: nginx-conf
         - name: ms-recommendation-api
           image: ms-recommendation-api:latest
           imagePullPolicy: IfNotPresent
@@ -34,9 +27,6 @@ spec:
             - mountPath: /app/logs
               name: logs
       volumes:
-        - name: nginx-conf
-          configMap:
-            name: ms-recommendation-api-nginx-conf
         - name: logs
           persistentVolumeClaim:
             claimName: logs-pv-claim
