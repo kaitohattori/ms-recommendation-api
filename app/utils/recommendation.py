@@ -17,7 +17,10 @@ class Recommendation(object):
 
         reader = Reader(rating_scale=(rating_scale_st, rating_scale_end))
         data = Dataset.load_from_df(df[dataset_columns], reader)
-        cross_validate(NormalPredictor(), data, cv=cross_validate_value)
+        try:
+            cross_validate(NormalPredictor(), data, cv=cross_validate_value)
+        except ValueError:
+            return None
 
         svd = SVD()
         trainset = data.build_full_trainset()
